@@ -1,5 +1,6 @@
 Feature: Stori-QA-Automation-Challenge
 
+
   Scenario Outline: run a simple test
      Given the user navigates to "AutomationPractice" page
       When the user writes the <word>
