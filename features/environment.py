@@ -1,3 +1,4 @@
+import os
 from selenium import webdriver
 from behave import fixture, use_fixture
 from selenium.webdriver.chrome.options import Options
@@ -11,7 +12,8 @@ def browser_ios(context):
     ios_options.set_capability('platformVersion', '16')
     ios_options.set_capability('deviceName', 'iPhone 14')
     context.driver = webdriver.Remote(
-        command_executor="https://erickreyes_Dc0zuJ:pjaxzTydTWC7b4qN7XGn@hub-cloud.browserstack.com/wd/hub",
+        command_executor=f"https://{os.environ.get('BROWSERSTACK_USERNAME')}:{os.environ.get('BROWSERSTACK_ACCESS_KEY')}"
+                         f"@hub-cloud.browserstack.com/wd/hub",
         options=ios_options
     )
     context.driver.implicitly_wait(2)

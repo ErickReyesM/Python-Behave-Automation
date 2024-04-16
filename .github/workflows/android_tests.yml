@@ -1,0 +1,31 @@
+name: BrowserStack Android Tests
+
+on:
+  pull_request_target:
+    types: [opened, synchronize]
+  issue_comment:
+    types: [created]
+
+jobs:
+  browserstack_tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run tests with BrowserStack
+        env:
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+          if: github.event_name == 'pull_request_target' && contains(github.event.comment.body, '/run-tests-android')
+        run:
+          behave -D platform=android
