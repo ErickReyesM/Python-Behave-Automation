@@ -28,7 +28,7 @@ For manual execution from the local environment we need to change the ```browser
 
 ### Test Results
 - The results of the execution you can consult them in the Actions tab of the repo
-- To generate a report manually you should add the flag  ```-f html -o behave-report.html ``` *-f* means format of the report and the *-o* the output file name
+- To generate a report manually you should add the flag  ```-f html -o behave-report.html ``` to the ```-behave``` command to start an execution of the tests *-f* means format of the report and the *-o* the output file name
 
 ## Project Structure
 The project follows the Page Object Model design pattern for better organization and readability of tests. The structure is as follows:
