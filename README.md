@@ -26,6 +26,10 @@ For manual execution from the local environment we need to change the ```browser
     behave -D browser=android  # For Android tests
     behave -D browser=ios      # For iOS tests
 
+### Test Results
+- The results of the execution you can consult them in the Actions tab of the repo
+- To generate a report manually you should add the flag  ```-f html -o behave-report.html ``` *-f* means format of the report and the *-o* the output file name
+
 ## Project Structure
 The project follows the Page Object Model design pattern for better organization and readability of tests. The structure is as follows:
 
