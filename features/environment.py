@@ -34,10 +34,10 @@ def browser_android(context):
 
 def before_all(context):
     platform = context.config.userdata.get('platform', 'android')
+    browserstack_username = os.environ.get('BROWSERSTACK_USERNAME')
+    browserstack_access_key = os.environ.get('BROWSERSTACK_ACCESS_KEY')
     context.base_url = "https://rahulshettyacademy.com/"
-    context.browser_stack_url = ("https://{os.environ.get('BROWSERSTACK_USERNAME')}:"
-                                 "{os.environ.get('BROWSERSTACK_ACCESS_KEY')}"
-                                 "@hub-cloud.browserstack.com/wd/hub")
+    context.browser_stack_url = f"https://{browserstack_username}:{browserstack_access_key}@hub-cloud.browserstack.com/wd/hub"
     if platform.lower() == 'ios':
         use_fixture(browser_ios, context)
     elif platform.lower() == 'android':
