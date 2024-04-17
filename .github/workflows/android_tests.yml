@@ -28,5 +28,4 @@ jobs:
           BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
           if: github.event_name == 'pull_request_target' && contains(github.event.comment.body, '/run-tests')
         run:
-          behave -D platform=android
-          behave -D platform=ios
+          behave -D platform=android && behave -D platform=ios
