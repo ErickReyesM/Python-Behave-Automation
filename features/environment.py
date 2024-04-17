@@ -1,40 +1,43 @@
 import os
 from selenium import webdriver
 from behave import fixture, use_fixture
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.safari.options import Options
+from selenium.webdriver.chrome.options import Options as AndroidOptions
+from selenium.webdriver.safari.options import Options as IOSOptions
 
 
 @fixture
 def browser_ios(context):
-    ios_options = Options()
+    ios_options = IOSOptions()
     ios_options.set_capability('platformName', 'ios')
-    ios_options.set_capability('platformVersion', '16')
-    ios_options.set_capability('deviceName', 'iPhone 14')
+    ios_options.set_capability('os_version', '16')
+    ios_options.set_capability('device', 'iPhone 14')
+    ios_options.set_capability('browserName', 'iphone')
+    ios_options.set_capability('buildName', 'Stori_Automation_Practice_0.1')
     context.driver = webdriver.Remote(
-        command_executor=f"https://{os.environ.get('BROWSERSTACK_USERNAME')}:{os.environ.get('BROWSERSTACK_ACCESS_KEY')}"
-                         f"@hub-cloud.browserstack.com/wd/hub",
+        command_executor=context.browser_stack_url,
         options=ios_options
     )
-    context.driver.implicitly_wait(2)
 
 
 @fixture
 def browser_android(context):
-    android_options = Options()
+    android_options = AndroidOptions()
     android_options.set_capability('platformName', 'android')
     android_options.set_capability('platformVersion', '9.0')
     android_options.set_capability('deviceName', 'Google Pixel 3')
+    android_options.set_capability('buildName', 'Stori_Automation_Practice_0.1')
     context.driver = webdriver.Remote(
-        command_executor="https://erickreyes_Dc0zuJ:pjaxzTydTWC7b4qN7XGn@hub-cloud.browserstack.com/wd/hub",
+        command_executor=context.browser_stack_url,
         options=android_options
     )
-    context.driver.implicitly_wait(2)
 
 
 def before_all(context):
-    platform = context.config.userdata.get('platform', 'ios')
+    platform = context.config.userdata.get('platform', 'android')
     context.base_url = "https://rahulshettyacademy.com/"
+    context.browser_stack_url = ("https://{os.environ.get('BROWSERSTACK_USERNAME')}:"
+                                 "{os.environ.get('BROWSERSTACK_ACCESS_KEY')}"
+                                 "@hub-cloud.browserstack.com/wd/hub")
     if platform.lower() == 'ios':
         use_fixture(browser_ios, context)
     elif platform.lower() == 'android':
