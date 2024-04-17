@@ -16,9 +16,8 @@ class HomePage:
 
     def select_country_from_the_available_list(self, country):
         country_list_xpath = "//ul[@id='ui-id-1']//div[contains(text(),'{0}')]".format(country)
-        errors = [NoSuchElementException, ElementNotInteractableException]
-        wait = WebDriverWait(self.driver, timeout=3, poll_frequency=1, ignored_exceptions=errors)
-        wait.until(lambda d: visibility_of(self.driver.find_element(By.XPATH, country_list_xpath)) or True)
+        wait = WebDriverWait(self.driver, timeout=3)
+        wait.until(lambda d: visibility_of(self.driver.find_element(By.XPATH, country_list_xpath)))
         available_country = self.driver.find_element(By.XPATH, country_list_xpath)
         available_country.click()
 
@@ -28,9 +27,8 @@ class HomePage:
 
     def select_option_from_the_dropdown(self, option):
         option_xpath = "//select[@id='dropdown-class-example']//option[contains(text(),'{0}')]".format(option)
-        errors = [NoSuchElementException, ElementNotInteractableException]
-        wait = WebDriverWait(self.driver, timeout=3, poll_frequency=1, ignored_exceptions=errors)
-        wait.until(lambda d: visibility_of(self.driver.find_element(By.XPATH, option_xpath)) or True)
+        wait = WebDriverWait(self.driver, timeout=3)
+        wait.until(lambda d: visibility_of(self.driver.find_element(By.XPATH, option_xpath)))
         option = self.driver.find_element(By.XPATH, option_xpath)
         option.click()
 
