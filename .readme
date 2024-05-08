@@ -1,0 +1,36 @@
+# Python-Behave-Automation
+
+This project demonstrates how to execute tests using Python Behave on BrowserStack, launching the default browser for Android using a Google Pixel 3 and iOS on an iPhone 14. The project follows the Page Object Model design pattern for test organization and readability.
+
+## Setup
+
+## Prerequisites
+- Python installed on your machine
+- BrowserStack account
+
+## Prerequisites
+- Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+-  BrowserStack credentials:
+Browserstack credentials are stored as secrets to be taken from GitHub Actions
+
+## Running Tests
+### Pull Request Trigger
+- Open a pull request (PR) on the repository.
+- Or comment ```/run-tests-android``` in the comments section of the PR to trigger a test execution for Android devices.
+- Wait for the tests to run and check the test results.
+
+### Manual Execution
+    ```bash
+    behave -D browser=android  # For Android tests
+    behave -D browser=ios      # For iOS tests
+    behave -D browser=desktop  # For Windows and Chrome
+
+## Project Structure
+The project follows the Page Object Model design pattern for better organization and readability of tests. The structure is as follows:
+
+features/: Contains Behave feature files.
+pages/: Contains Page Object classes representing web pages.
+steps/: Contains step definitions for Behave tests.
+environment.py: Configures test environment and BrowserStack settings.
