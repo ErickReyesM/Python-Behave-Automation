@@ -1,4 +1,4 @@
-# Stori-QA-Automation-Challenge
+# Python-Behave-Automation
 
 
 This project demonstrates how to execute tests using Python Behave on BrowserStack, launching the default browser for Android using a Google Pixel 3 and iOS on an iPhone 14. The project follows the Page Object Model design pattern for test organization and readability.
@@ -25,6 +25,7 @@ For manual execution from the local environment we need to change the ```browser
     
     behave -D browser=android  # For Android tests
     behave -D browser=ios      # For iOS tests
+    behave -D browser=desktop  # For Windows and Chrome
 
 ### Test Results
 - The results of the execution you can consult them in the Actions tab of the repo
