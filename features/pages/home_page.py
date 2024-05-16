@@ -5,6 +5,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 class HomePage:
     search_bar_locator = 'mainSearchbar'
     suggested_articles_locator = "div.m-sayt-padd label"
+    search_options_locator = "div.m-sayt-padd span"
     option_locator = ''
 
     def __init__(self, driver):
@@ -27,3 +28,7 @@ class HomePage:
                           .until(lambda x: x.find_element(By.XPATH, self.option_locator)))
         option_element.click()
 
+    def click_on_search_option(self):
+        option_search_element = (WebDriverWait(self.driver, 3)
+                                 .until(lambda x: x.find_element(By.CSS_SELECTOR, self.search_options_locator)))
+        option_search_element.click()
