@@ -22,10 +22,9 @@ This project demonstrates how to execute tests using Python Behave on BrowserSta
 ### Manual Execution
 
 For manual execution from the local environment we need to change the ```browser_stack_url``` in the ```environment.py``` file with the proper ```browserstack_username``` and ```browserstack_access_key```
-    
-    behave -D browser=android  # For Android tests
-    behave -D browser=ios      # For iOS tests
-    behave -D browser=desktop  # For Windows and Chrome
+
+    behave -D browser=remote  # For BrowserStack Chrome in Windows  
+    behave -D browser=local  # For local Chrome
 
 ### Test Results
 - The results of the execution you can consult them in the Actions tab of the repo

@@ -1,4 +1,5 @@
 behave
 selenium
+webdriver-manager
 Appium-Python-Client
 behave-html-formatter
